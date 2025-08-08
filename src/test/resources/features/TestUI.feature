@@ -13,12 +13,12 @@ Feature: Webpage actions
     Examples:
       | name   | email              |
       | kien1  | kitodo1@gmail.com  |
-#      | kien2  | kitodo2@gmail.com  |
-#      | kien3  | kitodo3@gmail.com  |
-#      | kien4  | kitodo4@gmail.com  |
-#      | kien5  | kitodo5@gmail.com  |
-#      | kien6  | kitodo6@gmail.com  |
-#      | kien7  | kitodo7@gmail.com  |
-#      | kien8  | kitodo8@gmail.com  |
-#      | kien9  | kitodo9@gmail.com  |
-#      | kien10 | kitodo10@gmail.com |
+      | kien2  | kitodo2@gmail.com  |
+      | kien3  | kitodo3@gmail.com  |
+      | kien4  | kitodo4@gmail.com  |
+      | kien5  | kitodo5@gmail.com  |
+      | kien6  | kitodo6@gmail.com  |
+      | kien7  | kitodo7@gmail.com  |
+      | kien8  | kitodo8@gmail.com  |
+      | kien9  | kitodo9@gmail.com  |
+      | kien10 | kitodo10@gmail.com |
