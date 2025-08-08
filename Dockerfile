@@ -1,20 +1,26 @@
-# Sử dụng image chính thức của Node.js
+# Sử dụng Node.js image chính thức từ Docker Hub
 FROM node:16
 
-# Đặt thư mục làm việc cho ứng dụng
-WORKDIR /usr/src/app
+# Thiết lập thư mục làm việc trong container
+WORKDIR /app
 
-# Sao chép package.json và package-lock.json vào container
+# Copy package.json và package-lock.json vào thư mục làm việc
 COPY package*.json ./
 
-# Cài đặt các dependencies
+# Cài đặt các dependencies cho ứng dụng
 RUN npm install
 
-# Sao chép mã nguồn vào container
+# Copy toàn bộ mã nguồn vào trong container
 COPY . .
 
-# Expose port 3000 cho ứng dụng
+# Cấu hình môi trường
+ENV DB_HOST=mysql
+ENV DB_USER=root
+ENV DB_PASSWORD=rootuser
+ENV DB_NAME=profileDB
+
+# Mở cổng 3000 cho ứng dụng
 EXPOSE 3000
 
-# Lệnh để chạy ứng dụng Node.js
+# Chạy ứng dụng khi container khởi động
 CMD ["node", "server.js"]

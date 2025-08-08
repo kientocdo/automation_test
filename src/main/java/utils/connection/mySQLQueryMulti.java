@@ -17,27 +17,37 @@ public class mySQLQueryMulti {
         List<String> profileData = new ArrayList<>();
 
         try {
-            // Create statement and execute query
+            // In câu query ra để kiểm tra
+            System.out.println("Executing query: " + queryData);
+
+            // Tạo statement và thực thi query
             stmt = conn.createStatement();
             rs = stmt.executeQuery(queryData);
 
-            // Get the number of columns
+            // Lấy số cột trong result set
             int columnCount = rs.getMetaData().getColumnCount();
 
-            // Process the result set
+            // Xử lý dữ liệu trả về từ result set
             while (rs.next()) {
                 for (int i = 1; i <= columnCount; i++) {
                     String fieldValue = rs.getString(i);
-                    profileData.add(fieldValue);  // Add field value to the list
+                    profileData.add(fieldValue);  // Thêm giá trị trường vào danh sách
                 }
             }
 
+            // Kiểm tra nếu không có dữ liệu trả về
+            if (profileData.isEmpty()) {
+                System.out.println("No data found for query: " + queryData);
+            }
+
         } catch (Exception e) {
+            // In chi tiết lỗi nếu có
+            System.out.println("Error executing query: " + e.getMessage());
             e.printStackTrace();
             return null;
         } finally {
             try {
-                // Close all resources
+                // Đóng tất cả các tài nguyên
                 if (rs != null) rs.close();
                 if (stmt != null) stmt.close();
                 if (conn != null) conn.close();
@@ -48,6 +58,8 @@ public class mySQLQueryMulti {
         return profileData;
     }
 
+
+    // Method to execute the count query with parameters
     public int queryCount(String query, Object... params) {
         Connection conn = DatabaseConnection.createConnection();
         PreparedStatement stmt = null;

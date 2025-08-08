@@ -90,15 +90,25 @@ public class ProfilePage {
             mySQLQueryMulti queryExecutor = new mySQLQueryMulti();
             List<String> profileData = queryExecutor.queryProfileData(query);
 
-            // Kiểm tra tính hợp lệ của dữ liệu trả về
+            System.out.println(query);
+            System.out.println(queryExecutor.queryProfileData(query));
+
+            // Kiểm tra dữ liệu trả về
             if (profileData == null || profileData.size() != 4) {
                 throw new RuntimeException("Profile data mismatch or incomplete: " + profileData);
             }
 
-            assertUsername(profileData.get(0), expectedUsername);
-            assertDateOfBirth(profileData.get(1), expectedDateOfBirth);
-            assertGender(profileData.get(2), expectedGender);
-            assertSubscribedMarketing(profileData.get(3), expectedSubscribedMarketing);
+            // Trích xuất dữ liệu từ danh sách
+            String actualUsername = profileData.get(0);
+            String actualDateOfBirth = profileData.get(1);
+            String actualGender = profileData.get(2);
+            String actualSubscribedMarketing = profileData.get(3);
+
+            // Kiểm tra tính hợp lệ của dữ liệu trả về
+            assertUsername(actualUsername, expectedUsername);
+            assertDateOfBirth(actualDateOfBirth, expectedDateOfBirth);
+            assertGender(actualGender, expectedGender);
+            assertSubscribedMarketing(actualSubscribedMarketing, expectedSubscribedMarketing);
 
         } catch (Exception e) {
             logger.error("❌ DB Verification failed: ", e);
